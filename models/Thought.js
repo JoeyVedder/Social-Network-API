@@ -18,7 +18,7 @@ const reactionSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    get: (timestamp) => timestamp.toISOString(), 
+    get: (timestamp) => timestamp.toISOString(), // format as needed
   },
 }, {
   _id: false,
@@ -35,7 +35,7 @@ const thoughtSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    get: (timestamp) => timestamp.toISOString(), 
+    get: (timestamp) => timestamp.toISOString(), // format as needed
   },
   username: {
     type: String,

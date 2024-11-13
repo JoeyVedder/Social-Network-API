@@ -2,58 +2,16 @@ const router = require('express').Router();
 const userController = require('../../controllers/userController');
 
 router.route('/')
-  .get(async (req, res) => {
-    try {
-      await userController.getAllUsers(req, res);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  })
-  .post(async (req, res) => {
-    try {
-      await userController.createUser(req, res);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+  .get(userController.getAllUsers)
+  .post(userController.createUser);
 
 router.route('/:userId')
-  .get(async (req, res) => {
-    try {
-      await userController.getUserById(req, res);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  })
-  .put(async (req, res) => {
-    try {
-      await userController.updateUser(req, res);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  })
-  .delete(async (req, res) => {
-    try {
-      await userController.deleteUser(req, res);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+  .get(userController.getUserById)
+  .put(userController.updateUser)
+  .delete(userController.deleteUser);
 
 router.route('/:userId/friends/:friendId')
-  .post(async (req, res) => {
-    try {
-      await userController.addFriend(req, res);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  })
-  .delete(async (req, res) => {
-    try {
-      await userController.removeFriend(req, res);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+  .post(userController.addFriend)
+  .delete(userController.removeFriend);
 
 module.exports = router;

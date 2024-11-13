@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Define the user schema
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -27,10 +28,13 @@ const userSchema = new mongoose.Schema({
   ],
 });
 
+// Add virtual for friend count
 userSchema.virtual('friendCount').get(function () {
   return this.friends.length;
 });
 
+// Ensure that the virtuals are included in JSON output
 userSchema.set('toJSON', { virtuals: true });
 
+// Create the User model
 module.exports = mongoose.model('User', userSchema);

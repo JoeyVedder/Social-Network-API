@@ -1,22 +1,24 @@
+// Load environment variables from .env file
 require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/api/userRoutes');
 const thoughtRoutes = require('./routes/api/thoughtRoutes');
-const connectDB = require('./config/db');
+const connectDB = require('./config/db'); // Import database connection function
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000; // Set PORT from .env or default to 3000
 
+// Middleware for JSON parsing
 app.use(express.json());
 
-// Set up API routes
+// Route setup
 app.use('/api/users', userRoutes);
 app.use('/api/thoughts', thoughtRoutes);
 
 // Connect to MongoDB
-connectDB();
+connectDB(); 
 
 // Start the server
 app.listen(PORT, () => {
